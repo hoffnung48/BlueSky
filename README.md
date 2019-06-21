@@ -26,7 +26,7 @@ Note: for docker and executable jar the commands must be run from projects root 
 # For Eclipse
 
 
-  - Import the project as Gradle Project 
+  - Import the project as Gradle Or Maven Project 
   - Run as SpringBoot App
 
 
