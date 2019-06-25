@@ -41,5 +41,31 @@ public class WeatherMapperTest {
 		assertEquals(new Date(vo.getSys().getSunrise()*1000), dto.getSunrise());
 		assertEquals(new Date(vo.getSys().getSunset()*1000), dto.getSunset());
 	}
+	
+	@Test
+	public void mappToOuterNull() {
+		WeatherDto dto = weatherMapper.mappToOuter(null);
+		
+		assertNotNull(dto);
+	}
+	
+	@Test
+	public void mappToOuterEmpty() {
+		WeatherDto dto = weatherMapper.mappToOuter(new WeatherVo());
+		
+		assertNotNull(dto);
+	}
+	
+	@Test
+	public void mappToOuterNullWeather() {
+		WeatherVo vo = factory.manufacturePojo(WeatherVo.class);
+		vo.setWeather(null);
+		WeatherDto dto = weatherMapper.mappToOuter(vo);
+		
+		assertEquals(vo.getName(), dto.getCity());
+		assertNotNull(dto.getDate());
+		
+		assertNotNull(dto);
+	}
 
 }

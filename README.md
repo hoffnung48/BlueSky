@@ -9,7 +9,7 @@ prerequisites
 
 
   - Java 8
-  -  Docker(if uses docker to run)
+  - maven 3x
 
 
 This is the Blue Sky assessment than can be run by
@@ -17,10 +17,6 @@ This is the Blue Sky assessment than can be run by
 
     - Eclipse IDE
     - Executable JAR
-    - Docker
-
-
-Note: for docker and executable jar the commands must be run from projects root directory
 
 
 # For Eclipse
@@ -34,22 +30,10 @@ Note: for docker and executable jar the commands must be run from projects root 
 
 
   - In command line run
-  
-    - for Gradle 
-    - Gradlew build
-    - cd build/libs
-    - java - jar [Generated jarName]
 
-	- for Maven
-    - mvn Clean install	
+	 - for Maven
+    - mvn lean install	
     - mvn spring-boot:run
-
-# For Docker  
-
-
-  - Gradlew build
-  - docker build -t bluesky .
-  - docker run -p 12000:12000 bluesky
 
 
 Once the App Starts

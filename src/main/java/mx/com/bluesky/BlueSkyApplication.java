@@ -1,7 +1,5 @@
 package mx.com.bluesky;
 
-import java.awt.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

@@ -17,7 +17,7 @@ public class WeatherMapper {
 
 	@Autowired
 	private TempUtil util;
-	
+
 	public WeatherDto mappToOuter(WeatherVo weather) {
 
 		WeatherDto outer = new WeatherDto();
@@ -25,21 +25,26 @@ public class WeatherMapper {
 		if (weather != null) {
 			outer.setCity(weather.getName());
 			outer.setDate(new Date());
-			outer.setDescription(getDescription(weather.getWeather()));
-			outer.setSunrise(new Date(weather.getSys().getSunrise()*1000));
-			outer.setSunset(new Date(weather.getSys().getSunset()*1000));
-			outer.setTempCelsius(util.fromkelvinToCelsius(weather.getMain().getTemp()));
-			outer.setTempFarenheit(util.fromkelvinToFarenheit(weather.getMain().getTemp()));
+			if (weather.getWeather() != null) {
+				outer.setDescription(getDescription(weather.getWeather()));
+				outer.setSunrise(new Date(weather.getSys().getSunrise() * 1000));
+				outer.setSunset(new Date(weather.getSys().getSunset() * 1000));
+			}
+			if (weather.getMain() != null) {
+				outer.setTempCelsius(util.fromkelvinToCelsius(weather.getMain().getTemp()));
+				outer.setTempFarenheit(util.fromkelvinToFarenheit(weather.getMain().getTemp()));
+			}
 		}
-		
+
 		return outer;
 
 	}
 
 	private List<String> getDescription(List<Weather> weather) {
+
 		List<String> descriptions = new ArrayList<>();
-		
-		for(Weather val: weather){
+
+		for (Weather val : weather) {
 			descriptions.add(val.getDescription());
 		}
 		return descriptions;

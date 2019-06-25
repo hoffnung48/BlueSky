@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.ui.Model;
 
-import mx.com.bluesky.commons.validator.Validator;
 import mx.com.bluesky.model.dto.WeatherDto;
 import mx.com.bluesky.service.WeatherService;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -27,9 +26,6 @@ public class WeatherControllerImplTest {
 
 	@Mock
 	private WeatherService service;
-
-	@Mock
-	private Validator validator;
 	
 	@Mock
 	private Model model;

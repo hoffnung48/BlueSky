@@ -1,23 +1,20 @@
 package mx.com.bluesky.service.impl;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import mx.com.bluesky.aggregator.WeatherAggregator;
-import mx.com.bluesky.commons.exception.BusinessServiceException;
 import mx.com.bluesky.entity.WeatherVo;
 import mx.com.bluesky.model.dto.WeatherDto;
 import mx.com.bluesky.model.dto.mapper.WeatherMapper;
-import mx.com.bluesky.service.impl.WeatherServiceImpl;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -48,7 +45,7 @@ public class WeatherServiceImplTest {
 		assertEquals(dto, response);
 	}
 	
-	@Test(expected=BusinessServiceException.class)
+	@Test(expected=RuntimeException.class)
 	public void getWeatherExceptionTest() {
 		when(weatherAggregator.getWeather(anyString())).thenThrow(new RuntimeException());
 		weatherServiceImpl.getWeather("");

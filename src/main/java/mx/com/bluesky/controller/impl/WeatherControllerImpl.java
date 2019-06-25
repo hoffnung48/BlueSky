@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import mx.com.bluesky.commons.exception.BusinessServiceException;
-import mx.com.bluesky.commons.validator.Validator;
 import mx.com.bluesky.model.dto.WeatherDto;
 import mx.com.bluesky.service.WeatherService;
 
@@ -32,14 +30,9 @@ public class WeatherControllerImpl {
 	private static final String SELECTED_OPTION = "selectedOption";
 	private static final String SHOW_RESULT = "showResult";
 	private static final String WEATHER_VIEW = "weatherView";
-	private static final String ERROR_VIEW = "errorView";
-	private static final String ERROR = "error";
 
 	@Autowired
 	private WeatherService service;
-
-	@Autowired
-	private Validator validator;
 
 	@RequestMapping("/")
 	public String getWeatherView(Model model) {
@@ -52,11 +45,10 @@ public class WeatherControllerImpl {
 			"Wheater" })
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "The confirmation code.", response = WeatherDto.class),
 			@ApiResponse(code = 400, message = "service not found"),
-			@ApiResponse(code = 500, message = "Bussines service ERROR", response = BusinessServiceException.class) })
+			@ApiResponse(code = 500, message = "Bussines service ERROR", response = RuntimeException.class) })
 	@PostMapping("/weather/city")
 	public String getWeather(@RequestParam String cityId, Model model, HttpSession session,
 			HttpServletRequest request) {
-		validator.isEmptyOrNull(cityId);
 
 		WeatherDto responseModel = service.getWeather(cityId);
 		model.addAttribute(DATE_PARAMETER, responseModel.getDate());
