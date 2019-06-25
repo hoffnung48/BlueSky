@@ -22,7 +22,7 @@ This is the Blue Sky assessment than can be run by
 # For Eclipse
 
 
-  - Import the project as Gradle Project 
+  - Import the project as Gradle Or Maven Project 
   - Run as SpringBoot App
 
 
